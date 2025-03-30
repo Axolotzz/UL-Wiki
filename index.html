@@ -3,53 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UL Wiki</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <title>Registro - Califica a tu Maestro</title>
     <style>
-        body { background-color: #f0f2f5; }
-        .navbar { background-color: #3b5998; }
-        .navbar-brand { color: white; }
-        .container { max-width: 800px; margin-top: 20px; }
-        .card { margin-bottom: 20px; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        img {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #1877f2;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background: #165db7;
+        }
     </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="#">UL Wiki</a>
-        </div>
-    </nav>
-    
-    <div class="container">
-        <h3 class="text-center my-4">Califica a tu maestro</h3>
-        
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Nombre del Maestro</h5>
-                <input type="text" id="teacher-name" class="form-control mb-2" placeholder="Escribe el nombre">
-                <label>Calificación (1-5):</label>
-                <input type="number" id="rating" class="form-control mb-2" min="1" max="5">
-                <textarea id="comment" class="form-control mb-2" placeholder="Escribe un comentario"></textarea>
-                <button class="btn btn-primary" onclick="submitRating()">Enviar</button>
-            </div>
-        </div>
-        
-        <h4 class="text-center my-4">Reseñas de maestros</h4>
-        <div id="reviews"></div>
-    </div>
-
     <script>
-        function submitRating() {
-            let name = document.getElementById('teacher-name').value;
-            let rating = document.getElementById('rating').value;
-            let comment = document.getElementById('comment').value;
+        function togglePassword(visible) {
+            let img = document.getElementById('homer-img');
+            let passwordInput = document.getElementById('password');
             
-            if (name && rating && comment) {
-                let reviewSection = document.getElementById('reviews');
-                let review = `<div class='card'><div class='card-body'><h5>${name} - ${rating}⭐</h5><p>${comment}</p></div></div>`;
-                reviewSection.innerHTML += review;
+            if (visible) {
+                img.src = 'homer_hiding.png';
+                passwordInput.type = 'password';
+            } else {
+                img.src = 'homer_watching.png';
+                passwordInput.type = 'text';
             }
         }
+        function register() {
+            window.location.href = 'menu.html';
+        }
     </script>
+</head>
+<body>
+    <div class="container">
+        <img id="homer-img" src="homer_watching.png" alt="Homero viendo">
+        <h2>Regístrate</h2>
+        <input type="text" placeholder="Nombre" required>
+        <input type="email" placeholder="Correo" required>
+        <input type="password" id="password" placeholder="Contraseña" onfocus="togglePassword(true)" onblur="togglePassword(false)" required>
+        <button onclick="register()">Crear Cuenta</button>
+    </div>
 </body>
 </html>
